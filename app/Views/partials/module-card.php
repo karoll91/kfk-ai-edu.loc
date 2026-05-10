@@ -3,8 +3,8 @@
  * @var array  $module   — modul ma'lumotlari
  * @var array  $progress — foydalanuvchi taraqqiyoti (ixtiyoriy)
  */
-$pct  = $progress['percent'] ?? 0;
-$done = $progress['exercises_done'] ?? 0;
+$pct  = $moduleProgress['percent'] ?? 0;
+$done = $moduleProgress['exercises_done'] ?? 0;
 $total= $module['exercise_count'] ?? 2;
 ?>
 <div class="module-card">

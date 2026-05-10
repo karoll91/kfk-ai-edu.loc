@@ -13,7 +13,7 @@
 
 <div class="modules-grid">
     <?php foreach ($modules as $module): ?>
-        <?php $progress = $progress[$module['id']] ?? []; ?>
+        <?php $moduleProgress = $progress[$module['id']] ?? []; ?>
         <?php include __DIR__ . '/../partials/module-card.php'; ?>
     <?php endforeach; ?>
 </div>

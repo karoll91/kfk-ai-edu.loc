@@ -36,7 +36,7 @@ class ExerciseController extends Controller
         $content = trim($_POST['content'] ?? '');
         if (mb_strlen($content) < 50) {
             $this->flash('error', 'Javob kamida 50 ta belgidan iborat bo\'lishi kerak');
-            $this->back();
+            $this->redirect("/exercises/{$exerciseId}");
             return;
         }
 

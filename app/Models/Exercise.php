@@ -30,8 +30,10 @@ class Exercise extends Model
     public static function withCreativeTask(int $id): array|false
     {
         return Database::fetchOne(
-            "SELECT e.*, ct.task_type, ct.elements, ct.prompt as creative_prompt
+            "SELECT e.*, m.name as module_name, m.slug as module_slug,
+                    ct.task_type, ct.elements, ct.prompt as creative_prompt
              FROM exercises e
+             JOIN modules m ON m.id = e.module_id
              LEFT JOIN creative_tasks ct ON ct.exercise_id = e.id
              WHERE e.id = ?",
             [$id]
