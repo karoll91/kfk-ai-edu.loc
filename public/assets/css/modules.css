@@ -1,0 +1,12 @@
+/* ─── MODULES PAGE (dashboard layout ichida) ────────────────── */
+.modules-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+/* ─── EXERCISES LIST ────────────────────────────────────────── */
+.exercises-list { margin-top: 1.5rem; }
+
+/* ─── PROGRESS SECTION ──────────────────────────────────────── */
+.progress-list {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg); padding: 1.25rem;
+}

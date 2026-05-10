@@ -1,0 +1,11 @@
+/vendor/
+/.env
+*.log
+*.cache
+/public/uploads/
+.DS_Store
+Thumbs.db
+/tests/coverage/
+.idea/
+.claude/
+~$*.docx

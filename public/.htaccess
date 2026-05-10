@@ -1,0 +1,27 @@
+Options -Indexes
+RewriteEngine On
+
+# Mavjud fayl yoki papkaga so'rov bo'lsa, o'zgartirma
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Barchasini index.php ga yo'naldir
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Xavfsizlik headerlari
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# PHP fayllarni to'g'ridan-to'g'ri chaqirishni bloklash (app/ papkasi uchun)
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+<FilesMatch "^index\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
