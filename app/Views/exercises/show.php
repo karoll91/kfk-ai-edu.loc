@@ -106,7 +106,7 @@ $hasSubmission = !empty($submission);
     </div>
 </div>
 
-<?php include __DIR__ . '/../partials/ai-helper.php'; ?>
+<?php $exerciseId = $exercise['id']; include __DIR__ . '/../partials/ai-helper.php'; ?>
 
 <script>
 const textarea = document.getElementById('answer-text');
