@@ -51,6 +51,10 @@ class AuthController extends Controller
 
         $redirect = $_SESSION['redirect_after_login'] ?? '/dashboard';
         unset($_SESSION['redirect_after_login']);
+        // Open redirect himoyasi: faqat bir xil origin yo'llariga ruxsat
+        if (!is_string($redirect) || !str_starts_with($redirect, '/') || str_starts_with($redirect, '//')) {
+            $redirect = '/dashboard';
+        }
         $this->redirect($redirect);
     }
 
