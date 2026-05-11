@@ -23,7 +23,7 @@ $colors = ['teal','purple','amber','teal','purple','amber','teal','purple'];
             <circle cx="40" cy="40" r="34" fill="none" stroke="var(--border-color)" stroke-width="6"/>
             <circle cx="40" cy="40" r="34" fill="none" stroke="#1D9E75" stroke-width="6"
                     stroke-linecap="round"
-                    stroke-dasharray="<?= round(213.6 * $overallPercent / 100, 1) ?> 213.6"
+                    stroke-dasharray="<?= round(213.63 * $overallPercent / 100, 1) ?> 213.63"
                     transform="rotate(-90 40 40)"/>
         </svg>
         <div class="ring-label">
@@ -34,15 +34,15 @@ $colors = ['teal','purple','amber','teal','purple','amber','teal','purple'];
 
     <div class="overview-stats">
         <div class="stat-card">
-            <span class="stat-card-num"><?= count(array_filter($submissions, fn($s) => $s['status'] !== 'submitted')) ?></span>
+            <span class="stat-card-num"><?= count($submissions) ?></span>
             <span class="stat-card-lbl">Bajarilgan</span>
         </div>
         <div class="stat-card">
-            <span class="stat-card-num"><?= count(array_filter($progress, fn($p) => $p['percent'] === 100)) ?></span>
+            <span class="stat-card-num"><?= count(array_filter($progress, fn($p) => (int)$p['percent'] === 100)) ?></span>
             <span class="stat-card-lbl">Tugallangan modul</span>
         </div>
         <div class="stat-card">
-            <span class="stat-card-num"><?= count(array_filter($progress, fn($p) => $p['percent'] > 0)) ?></span>
+            <span class="stat-card-num"><?= count(array_filter($progress, fn($p) => (int)$p['exercises_done'] > 0)) ?></span>
             <span class="stat-card-lbl">Boshlangan</span>
         </div>
     </div>
