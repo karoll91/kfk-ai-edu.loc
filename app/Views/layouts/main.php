@@ -13,11 +13,8 @@
     <?php require __DIR__ . '/../partials/navbar.php'; ?>
 
     <?php if (!empty($_SESSION['flash'])): ?>
-        <?php foreach ($_SESSION['flash'] as $type => $msg): ?>
-            <div class="alert alert-<?= $type ?>">
-                <?= htmlspecialchars($msg) ?>
-                <button class="alert-close" onclick="this.parentElement.remove()">×</button>
-            </div>
+        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
+            <?php require __DIR__ . '/../partials/alert.php'; ?>
         <?php endforeach; ?>
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>

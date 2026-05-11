@@ -104,7 +104,8 @@ ul, ol { padding-left: 1.5rem; }
     border-radius: var(--radius-md); box-shadow: var(--shadow-md);
     min-width: 180px; padding: 6px;
 }
-.user-menu:hover .user-dropdown { display: block; }
+.user-menu:hover .user-dropdown,
+.user-dropdown.is-open { display: block; }
 .dropdown-item {
     display: block; padding: 8px 12px;
     color: var(--text); font-size: 0.875rem;
