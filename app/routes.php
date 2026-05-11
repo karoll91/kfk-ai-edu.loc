@@ -35,8 +35,10 @@ $router->get('/teacher/grade/{id}',         'TeacherController@gradeForm',      
 $router->post('/teacher/grade/{id}',        'TeacherController@grade',          ['auth', 'teacher', 'csrf']);
 
 // ─── Admin paneli ─────────────────────────────────────────────
-$router->get('/admin',               'AdminController@index',      ['auth', 'admin']);
-$router->post('/admin/users/{id}/toggle', 'AdminController@toggleUser', ['auth', 'admin', 'csrf']);
+$router->get('/admin',                        'AdminController@index',        ['auth', 'admin']);
+$router->post('/admin/users/{id}/toggle',   'AdminController@toggleUser',   ['auth', 'admin', 'csrf']);
+$router->get('/admin/modules',              'AdminController@modules',       ['auth', 'admin']);
+$router->post('/admin/modules/{id}/toggle', 'AdminController@toggleModule',  ['auth', 'admin', 'csrf']);
 
 // ─── REST API (JSON) ─────────────────────────────────────────
 $router->post('/api/ai/help',         'API\AiApiController@help',   ['auth']);

@@ -6,6 +6,7 @@ use App\Core\Controller;
 use App\Core\Database;
 use App\Models\User;
 use App\Models\AiLog;
+use App\Models\Module;
 
 class AdminController extends Controller
 {
@@ -28,6 +29,25 @@ class AdminController extends Controller
             'aiStats' => $aiStats,
             'title'   => 'Admin paneli',
         ], 'dashboard');
+    }
+
+    public function modules(array $params = []): void
+    {
+        $this->render('admin.modules', [
+            'modules' => Module::allForAdmin(),
+            'title'   => 'Modullar boshqaruvi',
+        ], 'dashboard');
+    }
+
+    public function toggleModule(array $params = []): void
+    {
+        $id     = (int)($params['id'] ?? 0);
+        $module = Module::find($id);
+        if (!$module) { $this->abort(404); return; }
+
+        Module::update($id, ['is_active' => $module['is_active'] ? 0 : 1]);
+        $this->flash('success', 'Modul holati yangilandi');
+        $this->redirect('/admin/modules');
     }
 
     public function toggleUser(array $params = []): void

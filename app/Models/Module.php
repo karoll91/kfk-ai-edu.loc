@@ -31,4 +31,15 @@ class Module extends Model
              ORDER BY m.sort_order"
         );
     }
+
+    public static function allForAdmin(): array
+    {
+        return Database::fetchAll(
+            "SELECT m.*, COUNT(e.id) as exercise_count
+             FROM modules m
+             LEFT JOIN exercises e ON e.module_id = m.id
+             GROUP BY m.id
+             ORDER BY m.sort_order"
+        );
+    }
 }
