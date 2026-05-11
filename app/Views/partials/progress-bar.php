@@ -13,7 +13,6 @@ $color = $color ?? 'teal';
     </div>
     <div class="prog-bar-bg">
         <div class="prog-bar prog-bar--<?= $color ?>"
-             style="width: <?= (int)$percent ?>%"
              data-width="<?= (int)$percent ?>"></div>
     </div>
 </div>

@@ -57,7 +57,8 @@ class Progress extends Model
     public static function overallPercent(int $userId): int
     {
         $row = Database::fetchOne(
-            "SELECT IFNULL(AVG(percent), 0) as avg FROM progress WHERE user_id = ?",
+            "SELECT IFNULL(SUM(total_score) / NULLIF(SUM(max_possible), 0) * 100, 0) as avg
+             FROM progress WHERE user_id = ?",
             [$userId]
         );
         return (int)round((float)($row['avg'] ?? 0));

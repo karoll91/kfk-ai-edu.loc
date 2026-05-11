@@ -55,6 +55,20 @@ async function askAi(exerciseId) {
     }
 }
 
+// User dropdown toggle (mobil va klaviatura uchun)
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.querySelector('.user-menu-btn');
+    const dropdown = document.querySelector('.user-dropdown');
+    if (menuBtn && dropdown) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.toggle('is-open');
+            menuBtn.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', () => dropdown.classList.remove('is-open'));
+    }
+});
+
 // Progress bar animatsiya (sahifa yuklanganda)
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.prog-bar[data-width]').forEach(bar => {
