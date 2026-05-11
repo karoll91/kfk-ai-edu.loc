@@ -17,7 +17,9 @@ $router->get('/forgot-password',  'AuthController@forgotForm');
 $router->post('/forgot-password', 'AuthController@forgot',      ['csrf']);
 
 // ─── Talaba sahifalari (login kerak) ─────────────────────────
-$router->get('/dashboard',  'ProgressController@dashboard', ['auth']);
+$router->get('/dashboard',         'ProgressController@dashboard',      ['auth']);
+$router->get('/profile',           'ProgressController@profile',        ['auth']);
+$router->post('/profile/password', 'ProgressController@updatePassword', ['auth', 'csrf']);
 
 $router->get('/modules',             'ModuleController@index', ['auth']);
 $router->get('/modules/{id}',        'ModuleController@show',  ['auth']);

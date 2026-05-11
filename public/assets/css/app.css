@@ -305,6 +305,28 @@ ul, ol { padding-left: 1.5rem; }
 .role-admin   { background: var(--red-light);    color: var(--red); }
 .role-teacher { background: var(--purple-light); color: #3C3489; }
 .role-student { background: var(--green-light);  color: #085041; }
+.role-badge--admin   { background: var(--red-light);    color: var(--red); }
+.role-badge--teacher { background: var(--purple-light); color: #3C3489; }
+.role-badge--student { background: var(--green-light);  color: #085041; }
+
+/* ─── PROFIL ─────────────────────────────────────────────────── */
+.profile-card {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    background: var(--bg-surface); border-radius: var(--radius-md);
+    padding: 1.5rem; border: 0.5px solid var(--border);
+}
+.profile-avatar {
+    width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+    background: var(--green); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 600;
+}
+.profile-info  { display: flex; flex-direction: column; gap: 0.75rem; flex: 1; }
+.profile-row   { display: flex; align-items: center; gap: 1rem; }
+.profile-label { font-size: 0.8rem; color: var(--text-muted); width: 60px; flex-shrink: 0; }
+.profile-value { font-size: 0.9rem; font-weight: 500; }
+.profile-form-wrap { max-width: 440px; }
+
 .badge-count {
     background: var(--red-light); color: var(--red);
     padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 500;
