@@ -33,9 +33,9 @@ class User extends Model
     public static function allWithStats(): array
     {
         return Database::fetchAll(
-            "SELECT u.*, 
+            "SELECT u.*,
                 COUNT(DISTINCT s.id) as submissions_count,
-                IFNULL(AVG(s.score), 0) as avg_score
+                ROUND(IFNULL(AVG(IFNULL(s.teacher_score, s.score)), 0), 1) as avg_score
              FROM users u
              LEFT JOIN submissions s ON s.user_id = u.id
              GROUP BY u.id

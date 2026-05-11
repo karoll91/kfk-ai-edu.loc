@@ -27,7 +27,7 @@ class AdminController extends Controller
             'users'   => $users,
             'aiStats' => $aiStats,
             'title'   => 'Admin paneli',
-        ]);
+        ], 'dashboard');
     }
 
     public function toggleUser(array $params = []): void
@@ -35,6 +35,8 @@ class AdminController extends Controller
         $id   = (int)($params['id'] ?? 0);
         $user = User::find($id);
         if (!$user) { $this->abort(404); return; }
+
+        if ($user['role'] === 'admin') { $this->abort(403); return; }
 
         User::update($id, ['is_active' => $user['is_active'] ? 0 : 1]);
         $this->flash('success', 'Foydalanuvchi holati yangilandi');
