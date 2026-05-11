@@ -37,7 +37,7 @@
                 </a>
                 <?php endif; ?>
                 <hr class="sidebar-divider">
-                <a href="/profile"   class="sidebar-link">
+                <a href="/profile"   class="sidebar-link <?= str_starts_with($_SERVER['REQUEST_URI'], '/profile') ? 'active' : '' ?>">
                     <span class="sidebar-icon">👤</span> Profil
                 </a>
                 <form action="/logout" method="POST" style="margin:0">
