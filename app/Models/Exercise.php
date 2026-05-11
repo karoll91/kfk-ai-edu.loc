@@ -22,7 +22,7 @@ class Exercise extends Model
             "SELECT e.*, m.name as module_name, m.slug as module_slug
              FROM exercises e
              JOIN modules m ON m.id = e.module_id
-             WHERE e.id = ?",
+             WHERE e.id = ? AND e.is_active = 1",
             [$id]
         );
     }
@@ -35,7 +35,7 @@ class Exercise extends Model
              FROM exercises e
              JOIN modules m ON m.id = e.module_id
              LEFT JOIN creative_tasks ct ON ct.exercise_id = e.id
-             WHERE e.id = ?",
+             WHERE e.id = ? AND e.is_active = 1",
             [$id]
         );
     }
