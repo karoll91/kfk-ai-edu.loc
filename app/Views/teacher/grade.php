@@ -42,9 +42,7 @@
                            min="0" max="100"
                            value="<?= $submission['teacher_score'] ?? $submission['score'] ?? 70 ?>"
                            oninput="document.getElementById('score-display').textContent=this.value">
-                    <span class="score-display" id="score-display">
-                        <?= $submission['teacher_score'] ?? $submission['score'] ?? 70 ?>
-                    </span>
+                    <span class="score-display" id="score-display"><?= $submission['teacher_score'] ?? $submission['score'] ?? 70 ?></span>
                 </div>
             </div>
 
