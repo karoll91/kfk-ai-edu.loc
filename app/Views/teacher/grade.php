@@ -2,7 +2,16 @@
 
 <div class="page-header">
     <a href="/teacher" class="btn btn-ghost btn-sm">← Orqaga</a>
-    <h1 class="page-title">Baho berish</h1>
+    <div>
+        <h1 class="page-title">Baho berish</h1>
+        <p class="page-sub">
+            <strong><?= htmlspecialchars($submission['module_name']) ?></strong>
+            — <?= htmlspecialchars($submission['exercise_title']) ?>
+            &nbsp;·&nbsp;
+            👤 <?= htmlspecialchars($submission['user_name']) ?>
+            <span class="text-muted">(<?= htmlspecialchars($submission['user_email']) ?>)</span>
+        </p>
+    </div>
 </div>
 
 <div class="grade-layout">

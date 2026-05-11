@@ -29,6 +29,21 @@ class Submission extends Model
         );
     }
 
+    public static function findWithDetails(int $id): array|false
+    {
+        return Database::fetchOne(
+            "SELECT s.*, u.name as user_name, u.email as user_email,
+                    e.title as exercise_title, e.instructions,
+                    m.name as module_name, m.id as module_id
+             FROM submissions s
+             JOIN users u ON u.id = s.user_id
+             JOIN exercises e ON e.id = s.exercise_id
+             JOIN modules m ON m.id = e.module_id
+             WHERE s.id = ?",
+            [$id]
+        );
+    }
+
     public static function pendingTeacherReview(): array
     {
         return Database::fetchAll(
