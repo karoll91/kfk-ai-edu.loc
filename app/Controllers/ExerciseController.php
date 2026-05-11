@@ -54,25 +54,21 @@ class ExerciseController extends Controller
         $ai     = new ClaudeAPI();
         $result = $ai->review($exercise['title'] . "\n" . $exercise['instructions'], $content);
 
-        if (!$result['success']) {
-            $this->flash('error', 'AI xizmati hozircha mavjud emas. Iltimos, keyinroq urinib ko\'ring.');
-            $this->redirect("/exercises/{$exerciseId}");
-            return;
-        }
-
-        $score    = $result['review']['score'] ?? 50;
-        $feedback = $result['review']['feedback'] ?? '';
+        $aiWorked = $result['success'];
+        $score    = $aiWorked ? ($result['review']['score'] ?? 50) : null;
+        $feedback = $aiWorked ? ($result['review']['feedback'] ?? '') : null;
+        $status   = $aiWorked ? 'ai_reviewed' : 'submitted';
         $now      = date('Y-m-d H:i:s');
 
-        // Saqlash yoki yangilash
+        // Saqlash yoki yangilash (AI ishlamasa ham submission saqlanadi)
         if ($existing) {
             Submission::update($existing['id'], [
                 'content'      => $content,
                 'score'        => $score,
                 'ai_feedback'  => $feedback,
-                'status'       => 'ai_reviewed',
+                'status'       => $status,
                 'submitted_at' => $now,
-                'reviewed_at'  => $now,
+                'reviewed_at'  => $aiWorked ? $now : null,
             ]);
             $submissionId = $existing['id'];
         } else {
@@ -82,10 +78,14 @@ class ExerciseController extends Controller
                 'content'      => $content,
                 'score'        => $score,
                 'ai_feedback'  => $feedback,
-                'status'       => 'ai_reviewed',
+                'status'       => $status,
                 'submitted_at' => $now,
-                'reviewed_at'  => $now,
+                'reviewed_at'  => $aiWorked ? $now : null,
             ]);
+        }
+
+        if (!$aiWorked) {
+            $this->flash('error', 'AI xizmati hozircha mavjud emas. Javobingiz saqlandi — o\'qituvchi tomonidan baholanadi.');
         }
 
         // AI logga yozish
