@@ -19,7 +19,7 @@ class TeacherController extends Controller
             'pending'  => $pending,
             'students' => $students,
             'title'    => 'O\'qituvchi paneli',
-        ]);
+        ], 'dashboard');
     }
 
     public function gradeForm(array $params = []): void
@@ -30,7 +30,7 @@ class TeacherController extends Controller
         $this->render('teacher.grade', [
             'submission' => $submission,
             'title'      => 'Baho berish — ' . $submission['exercise_title'],
-        ]);
+        ], 'dashboard');
     }
 
     public function grade(array $params = []): void
