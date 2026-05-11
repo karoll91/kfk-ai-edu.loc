@@ -19,7 +19,14 @@ class User extends Model
     public static function activeStudents(): array
     {
         return Database::fetchAll(
-            "SELECT * FROM users WHERE role = 'student' AND is_active = 1 ORDER BY name"
+            "SELECT u.*,
+                COUNT(DISTINCT s.id) as submissions_count,
+                ROUND(IFNULL(AVG(IFNULL(s.teacher_score, s.score)), 0), 1) as avg_score
+             FROM users u
+             LEFT JOIN submissions s ON s.user_id = u.id
+             WHERE u.role = 'student' AND u.is_active = 1
+             GROUP BY u.id
+             ORDER BY u.name"
         );
     }
 

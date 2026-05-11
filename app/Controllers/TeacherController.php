@@ -22,6 +22,23 @@ class TeacherController extends Controller
         ], 'dashboard');
     }
 
+    public function studentDetail(array $params = []): void
+    {
+        $student = User::find((int)($params['id'] ?? 0));
+        if (!$student || $student['role'] !== 'student') {
+            $this->abort(404);
+            return;
+        }
+
+        $submissions = Submission::byUser($student['id']);
+
+        $this->render('teacher.student', [
+            'student'     => $student,
+            'submissions' => $submissions,
+            'title'       => $student['name'] . ' — Topshiriqlar',
+        ], 'dashboard');
+    }
+
     public function gradeForm(array $params = []): void
     {
         $submission = Submission::findWithDetails((int)($params['id'] ?? 0));

@@ -68,13 +68,17 @@
     <h2 class="block-title">Talabalar (<?= count($students) ?>)</h2>
     <div class="students-grid">
         <?php foreach ($students as $st): ?>
-        <div class="student-card">
+        <a href="/teacher/student/<?= $st['id'] ?>" class="student-card student-card--link">
             <span class="user-init user-init--lg"><?= mb_substr($st['name'], 0, 1) ?></span>
-            <div>
+            <div class="student-card-info">
                 <div class="student-name"><?= htmlspecialchars($st['name']) ?></div>
                 <div class="student-email text-muted"><?= htmlspecialchars($st['email']) ?></div>
+                <div class="student-stats">
+                    <span class="student-stat">📝 <?= (int)$st['submissions_count'] ?> ta</span>
+                    <span class="student-stat">⭐ <?= $st['avg_score'] > 0 ? $st['avg_score'] . ' ball' : '—' ?></span>
+                </div>
             </div>
-        </div>
+        </a>
         <?php endforeach; ?>
     </div>
 </div>

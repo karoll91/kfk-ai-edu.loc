@@ -29,9 +29,10 @@ $router->post('/exercises/{id}/submit',          'ExerciseController@submit', ['
 $router->get('/exercises/{id}/result/{sid}',     'ExerciseController@result', ['auth']);
 
 // ─── O'qituvchi paneli ───────────────────────────────────────
-$router->get('/teacher',             'TeacherController@index',     ['auth', 'teacher']);
-$router->get('/teacher/grade/{id}',  'TeacherController@gradeForm', ['auth', 'teacher']);
-$router->post('/teacher/grade/{id}', 'TeacherController@grade',     ['auth', 'teacher', 'csrf']);
+$router->get('/teacher',                    'TeacherController@index',         ['auth', 'teacher']);
+$router->get('/teacher/student/{id}',       'TeacherController@studentDetail',  ['auth', 'teacher']);
+$router->get('/teacher/grade/{id}',         'TeacherController@gradeForm',      ['auth', 'teacher']);
+$router->post('/teacher/grade/{id}',        'TeacherController@grade',          ['auth', 'teacher', 'csrf']);
 
 // ─── Admin paneli ─────────────────────────────────────────────
 $router->get('/admin',               'AdminController@index',      ['auth', 'admin']);
