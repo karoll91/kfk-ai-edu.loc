@@ -24,12 +24,12 @@ class TeacherController extends Controller
 
     public function gradeForm(array $params = []): void
     {
-        $submission = Submission::find((int)($params['id'] ?? 0));
+        $submission = Submission::findWithDetails((int)($params['id'] ?? 0));
         if (!$submission) { $this->abort(404); return; }
 
         $this->render('teacher.grade', [
             'submission' => $submission,
-            'title'      => 'Baho berish',
+            'title'      => 'Baho berish — ' . $submission['exercise_title'],
         ]);
     }
 
@@ -51,7 +51,7 @@ class TeacherController extends Controller
 
         Submission::update($id, [
             'teacher_score'    => min(100, max(0, (int)$_POST['teacher_score'])),
-            'teacher_feedback' => htmlspecialchars(trim($_POST['teacher_feedback']), ENT_QUOTES, 'UTF-8'),
+            'teacher_feedback' => trim($_POST['teacher_feedback']),
             'status'           => 'teacher_reviewed',
             'reviewed_at'      => date('Y-m-d H:i:s'),
         ]);

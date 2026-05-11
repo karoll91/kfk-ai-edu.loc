@@ -50,11 +50,16 @@ class Controller
         exit;
     }
 
-    // Oldingi sahifaga qaytish
+    // Oldingi sahifaga qaytish (faqat bir xil origin)
     protected function back(): void
     {
-        $referer = $_SERVER['HTTP_REFERER'] ?? '/';
-        $this->redirect($referer);
+        $referer = $_SERVER['HTTP_REFERER'] ?? '';
+        $host    = $_SERVER['HTTP_HOST'] ?? '';
+        $parsed  = parse_url($referer);
+        $safe    = $parsed && ($parsed['host'] ?? '') === $host
+            ? $referer
+            : '/';
+        $this->redirect($safe);
     }
 
     // Flash xabar qo'shish
